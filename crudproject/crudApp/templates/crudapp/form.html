@@ -1,0 +1,51 @@
+{% extends "crudapp/base.html" %} {% block content %}
+
+<!-- Alertify for form -->
+{% if messages %} {% for message in messages %}
+<script>
+  alertify.set("notifier", "position", "top-left");
+  alertify.success("{{message}}");
+</script>
+{% endfor %} {% endif %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 class=" text-center alert alert-info">Add Students Information</h1>
+
+      <div class="form-containers d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="form-container w-40">
+          <p class="title">Login</p>
+          <form method="POST" action="{% url 'form' %}" class="form">
+            {% csrf_token %}
+            <div class="input-group">
+              <label for="username">Fullname</label>
+              <input type="text" name="name" placeholder="" />
+            </div>
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" name="age" placeholder="" />
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" placeholder="" />
+            </div>
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment here"
+                name="message"
+                id="floatingTextarea2"
+                style="height: 100px"
+              ></textarea>
+              <label for="floatingTextarea2">Message</label>
+            </div>
+            <input class="input-form" type="submit" value="Register" />
+          </form>
+        </div>
+      </div>
+    </div>
+	
+  </div>
+</div>
+
+{% endblock content %}
